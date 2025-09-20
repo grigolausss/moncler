@@ -1,0 +1,53 @@
+import requests
+import json
+
+BASE_URL = "http://127.0.0.1:5001/api"
+
+def test_get_cities():
+    """Tests the GET /cities endpoint."""
+    print("--- Testing GET /api/cities ---")
+    try:
+        response = requests.get(f"{BASE_URL}/cities")
+        response.raise_for_status()  # Raise an exception for bad status codes
+        print(f"Status Code: {response.status_code}")
+        print("Response JSON:")
+        print(json.dumps(response.json(), indent=2))
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+
+def test_get_sku_status():
+    """Tests the GET /sku_status/<city> endpoint."""
+    city_name = "Milano"
+    print(f"\n--- Testing GET /api/sku_status/{city_name} ---")
+    try:
+        response = requests.get(f"{BASE_URL}/sku_status/{city_name}")
+        response.raise_for_status()
+        print(f"Status Code: {response.status_code}")
+        print("Response JSON:")
+        print(json.dumps(response.json(), indent=2))
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+
+def test_add_city():
+    """Tests the POST /cities endpoint."""
+    new_city = {"name": "Test City"}
+    print(f"\n--- Testing POST /api/cities with {new_city} ---")
+    try:
+        response = requests.post(f"{BASE_URL}/cities", json=new_city)
+        response.raise_for_status()
+        print(f"Status Code: {response.status_code}")
+        print("Response JSON:")
+        print(json.dumps(response.json(), indent=2))
+
+        # Verify it was added
+        verify_response = requests.get(f"{BASE_URL}/cities")
+        all_cities = [city['name'] for city in verify_response.json()]
+        print(f"Verification: 'Test City' in city list? {'Test City' in all_cities}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    test_get_cities()
+    test_get_sku_status()
+    test_add_city()

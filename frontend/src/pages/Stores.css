@@ -1,0 +1,58 @@
+.stores-page {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stores-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.store-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.store-header h3 {
+  margin: 0;
+}
+
+.open-chip {
+  background-color: #22c55e;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.store-card p {
+  margin: 0.5rem 0;
+}
+
+.opening-hours ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #475569;
+}
+
+.opening-hours li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.opening-hours li span {
+  font-weight: 500;
+}
